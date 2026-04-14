@@ -25,4 +25,31 @@ document.addEventListener('DOMContentLoaded', () => {
     revealElements.forEach(element => {
         observer.observe(element);
     });
+
+    // WebViewer Integration for Company Documents
+    const docButtons = document.querySelectorAll('.doc-btn');
+    const viewerElement = document.getElementById('viewer');
+    let viewerInstance = null;
+
+    docButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const docPath = button.getAttribute('data-doc');
+
+            // Show the viewer container
+            viewerElement.style.display = 'block';
+
+            if (!viewerInstance) {
+                // Initialize WebViewer on first click
+                WebViewer({
+                    path: 'webviewer',
+                    initialDoc: docPath
+                }, viewerElement).then(instance => {
+                    viewerInstance = instance;
+                });
+            } else {
+                // Load the new document if viewer is already initialized
+                viewerInstance.UI.loadDocument(docPath);
+            }
+        });
+    });
 });

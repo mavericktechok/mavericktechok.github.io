@@ -1,0 +1,3 @@
+## 2026-04-14 - Interactive Brand Logos & Focus States
+**Learning:** Logos should serve as a predictable home navigation mechanism. Additionally, native `:focus-visible` needs explicit definitions in many custom CSS resets or basic setups to ensure users navigating via keyboard can see what is currently focused, particularly for buttons and links.
+**Action:** Always wrap top-level brand logos in `<a>` tags targeting the top of the page (`#hero` or `/`), and provide fallback `:focus-visible` outlines globally for interactive elements when establishing base styles.

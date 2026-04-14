@@ -30,6 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const docButtons = document.querySelectorAll('.doc-btn');
     const viewerElement = document.getElementById('viewer');
     let viewerInstance = null;
+    let isScriptLoading = false; // Flag to prevent multiple script tag insertions
 
     docButtons.forEach(button => {
         button.addEventListener('click', () => {
@@ -38,17 +39,37 @@ document.addEventListener('DOMContentLoaded', () => {
             // Show the viewer container
             viewerElement.style.display = 'block';
 
-            if (!viewerInstance) {
-                // Initialize WebViewer on first click
-                WebViewer({
-                    path: 'webviewer',
-                    initialDoc: docPath
-                }, viewerElement).then(instance => {
-                    viewerInstance = instance;
-                });
+            const initViewer = () => {
+                isScriptLoading = false;
+                if (!viewerInstance) {
+                    // Initialize WebViewer on first click
+                    WebViewer({
+                        path: 'webviewer',
+                        initialDoc: docPath
+                    }, viewerElement).then(instance => {
+                        viewerInstance = instance;
+                    });
+                } else {
+                    // Load the new document if viewer is already initialized
+                    viewerInstance.UI.loadDocument(docPath);
+                }
+            };
+
+            // ⚡ Bolt Performance Optimization:
+            // Lazy load the heavy WebViewer library only when needed to improve initial page render time.
+            if (typeof window.WebViewer === 'undefined') {
+                if (!isScriptLoading) {
+                    isScriptLoading = true;
+                    const script = document.createElement('script');
+                    script.src = 'webviewer.min.js';
+                    script.onload = initViewer;
+                    document.body.appendChild(script);
+                }
+                // If script is already loading, we do nothing. The user must wait.
+                // Once loaded, they can click again if the first init didn't capture their doc choice perfectly,
+                // but usually the first click handles it.
             } else {
-                // Load the new document if viewer is already initialized
-                viewerInstance.UI.loadDocument(docPath);
+                initViewer();
             }
         });
     });

@@ -20,6 +20,7 @@
 
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: 70px; /* Offset for sticky nav */
 }
 
 body {
@@ -45,9 +46,50 @@ a {
     color: inherit;
 }
 
+/* Navigation */
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: var(--primary-color);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--background-color);
+    text-transform: uppercase;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin-left: 1.5rem;
+}
+
+nav ul li a {
+    color: var(--background-color);
+    font-weight: bold;
+    font-size: 1rem;
+    transition: color var(--transition-speed);
+}
+
+nav ul li a:hover {
+    color: var(--neutral-dark);
+}
+
 /* Container */
 section {
-    padding: 4rem 2rem;
+    padding: 6rem 2rem 4rem 2rem; /* Increased top padding to account for nav when navigating directly to section via URL */
     max-width: 1200px;
     margin: 0 auto;
 }
@@ -209,8 +251,31 @@ section:nth-child(even) {
     transform: translateY(0);
 }
 
+/* Footer */
+footer {
+    background-color: var(--primary-color);
+    color: var(--background-color);
+    text-align: center;
+    padding: 2rem;
+    font-size: 0.9rem;
+}
+
 /* Responsive Adjustments */
 @media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        padding: 1rem;
+    }
+
+    nav ul {
+        margin-top: 1rem;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    nav ul li {
+        margin: 0.5rem;
+    }
     .hero-content h1 {
         font-size: 2.5rem;
     }

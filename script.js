@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Add 'active' class to trigger the CSS animation
                 entry.target.classList.add('active');
                 // Optional: Stop observing once revealed
-                // observer.unobserve(entry.target);
+                observer.unobserve(entry.target);
             } else {
                 // Optional: Remove class when out of view to allow re-triggering
                 // entry.target.classList.remove('active');
@@ -32,9 +32,22 @@ document.addEventListener('DOMContentLoaded', () => {
     let viewerInstance = null;
     let isScriptLoading = false; // Flag to prevent multiple script tag insertions
 
+    // Define allowed documents to prevent unauthorized file access
+    const ALLOWED_DOCS = [
+        'Maverick Business Capabilites 2018.doc',
+        'Maverick Executive Summary 2020.doc',
+        'Quality Policy.doc'
+    ];
+
     docButtons.forEach(button => {
         button.addEventListener('click', () => {
             const docPath = button.getAttribute('data-doc');
+
+            // Validate the document path against the allowlist
+            if (!ALLOWED_DOCS.includes(docPath)) {
+                console.error('Unauthorized document path:', docPath);
+                return;
+            }
 
             // Show the viewer container
             viewerElement.style.display = 'block';
@@ -44,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (!viewerInstance) {
                     // Initialize WebViewer on first click
                     WebViewer({
-                        path: 'webviewer',
+                        path: 'https://cdn.jsdelivr.net/npm/@pdftron/webviewer@11.12.0/public',
                         initialDoc: docPath
                     }, viewerElement).then(instance => {
                         viewerInstance = instance;

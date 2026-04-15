@@ -46,6 +46,14 @@ a {
     color: inherit;
 }
 
+/* Accessibility: Keyboard Navigation Focus Styles */
+a:focus-visible,
+button:focus-visible,
+.cta-button:focus-visible {
+    outline: 3px solid var(--primary-dark);
+    outline-offset: 2px;
+}
+
 /* Navigation */
 nav {
     position: fixed;
@@ -65,6 +73,11 @@ nav {
     font-weight: bold;
     color: var(--background-color);
     text-transform: uppercase;
+    transition: color var(--transition-speed);
+}
+
+a.logo:hover {
+    color: var(--neutral-dark);
 }
 
 nav ul {

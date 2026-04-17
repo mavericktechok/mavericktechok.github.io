@@ -2,7 +2,7 @@
 Static website for Maverick Technologies.
 
 ## Live Website
-[https://mavericktechok.github.io/maverick.github.io/](https://mavericktechok.github.io/maverick.github.io/)
+[https://mavericktechok.github.io/](https://mavericktechok.github.io/)
 
 ## Local Setup Instructions
 

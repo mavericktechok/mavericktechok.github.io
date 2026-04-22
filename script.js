@@ -13,9 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 entry.target.classList.add('active');
                 // Optional: Stop observing once revealed
                 observer.unobserve(entry.target);
-            } else {
-                // Optional: Remove class when out of view to allow re-triggering
-                // entry.target.classList.remove('active');
             }
         });
     }, observerOptions);

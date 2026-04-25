@@ -198,6 +198,52 @@ section:nth-child(even) {
     color: var(--primary-dark);
 }
 
+/* Policy Content */
+.policy-content {
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 1.05rem;
+    background-color: var(--background-color);
+    padding: 3rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.policy-content p {
+    margin-bottom: 1.2rem;
+    line-height: 1.7;
+}
+
+.policy-content h3 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    color: var(--primary-dark);
+    font-size: 1.5rem;
+}
+
+.policy-content h4 {
+    margin-top: 1.5rem;
+    margin-bottom: 0.8rem;
+    color: var(--neutral-dark);
+    font-size: 1.2rem;
+}
+
+.policy-content ul {
+    margin-left: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.policy-content li {
+    margin-bottom: 0.5rem;
+}
+
+.policy-content hr {
+    border: 0;
+    height: 1px;
+    background-color: var(--neutral-medium);
+    margin: 2rem 0;
+}
+
 /* 3. Quality Assurance */
 .quality-content {
     max-width: 800px;
